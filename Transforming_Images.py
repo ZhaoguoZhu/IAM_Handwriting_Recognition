@@ -1,13 +1,3 @@
-import keras
-from keras.preprocessing.image import load_img
-from PIL import Image
-from resizeimage import resizeimage
-import os
-
-
-
-
-
 def 32x128_grayscale():
     directory = 'words/'
     for sub1 in os.listdir(directory):
