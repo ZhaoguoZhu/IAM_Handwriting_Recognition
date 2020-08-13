@@ -44,7 +44,7 @@ class HWTRModel:
     	inputs, outputs, optimizer = outs
     	# create and compile
     	self.model = Model(inputs=inputs, outputs=outputs)
-    	self.model.compile(optimizer=optimizer, loss=HWTRModel.custom_ctc_loss_function)
+    	self.model.compile(optimizer=optimizer, loss=HWTRModel.custom_ctc_loss_function, metrics=['accuracy'])
     
     def predict(self,x_val,batch_size=32,verbose=0,steps=1,callbacks=None,max_queue_size=10,
                 workers=1,
@@ -121,7 +121,14 @@ class HWTRModel:
         return_dict=False,
         ):
         return self.model.evaluate(x, y, verbose = verbose)
-        
+
+    def save(self,filepath,
+        overwrite=True,
+        include_optimizer=True,
+        save_format=None,
+        signatures=None,
+        options=None):
+        self.model.save(filepath = filepath)
         
     def custom_ctc_loss_function(y_true, y_pred, *kwargs):
     	'''

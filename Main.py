@@ -30,7 +30,6 @@ def exe():
     '''
      
     TrainX, TestX = normalize_pixels(TrainX, TestX)
-    print("did i get here")
     eval_model(TrainX, TrainY, TestX, TestY)
 
 exe()
