@@ -1,1 +1,2 @@
-# IAM_Handwriting_Recognition
+# Handwriting Recognition with customed Keras model
+
