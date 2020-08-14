@@ -22,4 +22,36 @@ Caution: This project waits for further modification since some of the implement
 ### Two Dictionary python files:  
 
 These two function return two dictionary that will support the data preprocessing:  
-* Filename -> word: 
+* Key = filename -> value = word. Sample: "a01-000u-00-00.png" -> "A" (String -> String)  
+* Key = character -> value = integer representation. Sample: "A" -> 7 (String -> int)  
+The integer representation will vary each time the function compile
+
+### Data_Preprocessing.py:  
+
+Iterate through words/ directory and transforming them into shape of 32x128 grayscale images and then turn them into numpy arrays which will be stored in TrainX and TestX numpy arrays. After finding the corresponding word of a image through the first dictionary, iterate through every single character and turn them into integer representation and store them in an array of fixed size of length of 32 by looking into the second dictionary. For example: "a01-000u-00-00.png" -> "A" -> [7,0,0,0,...,0].  
+
+### Loading_Normalize.py:  
+
+As we know a color activation can vary from 0 to 255. For easy training purposes, we transform each pixel from range 255 to range 1 in float type.  
+
+### HWTRModel.py and Model_Evaluation.py:  
+
+The first python file consists of the model described in introduction and customed method including fit(), predict(), summary(), compile() and most importantly the custom_ctc_loss_function() that return the loss in model compiling. Model_Evaluation will initiate the model, train the model and save the model.  
+
+Model saved can be used for prediction already but user have to write a python file to load the model locally since this project is yet incompleted.  
+
+### main.py:
+
+run python main.py and you are ready to go.  
+
+## Future goals:  
+
+* Custom accuracy metrics  
+* Improve accuracy by adding epochs, dropout, data augmentation, shifting optimizer  
+* Adding Validation dataset and K-fold cross validation feature to check overfitting intensity  
+
+## References:  
+\[1\] [IAM Handwriting Database](http://www.fki.inf.unibe.ch/databases/iam-handwriting-database)  
+\[2\] [Sequence Modeling with CTC](https://distill.pub/2017/ctc/)  
+\[3\] [CTC Model](https://github.com/ysoullard/CTCModel)  
+\[4\] [Simple HTR](https://github.com/githubharald/SimpleHTR)
